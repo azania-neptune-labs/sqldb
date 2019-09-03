@@ -10,7 +10,7 @@ var express = require("express");
   });
 
   pool.getConnection(function(err , connection){
-   connection.query('select * from users',function(err,rows{
+   connection.query('select * from users',function(err,rows){
    connection.release();
    });
   });
@@ -22,6 +22,6 @@ var express = require("express");
   pool.end(function(err)
   {});
 
-   var server = app.listen(3360, function()){
+   var server = app.listen(3360, function(){
       console.log('listen to port 3360');
    });
