@@ -75,18 +75,26 @@
 </html>
 
   <?php
-            
-            if (isset($_POST['login']) && !empty($_POST['username']) 
-               && !empty($_POST['password'])) {
-				
-               if ($_POST['username'] == 'tutorialspoint' && 
-                  $_POST['password'] == '1234') {
-                
-                  
-                  echo 'You have entered valid use name and password';
-               }else {
-                  echo 'Wrong username or password';
-               }
-            }
+            $con = mysqli_connect("localhost","root","","bestsofar");
+           if(isset($_POST['Login'])){
+
+		$EMAIL = mysqli_real_escape_string($con, $_POST['username']);
+		$USER_PASSWORD = mysqli_real_escape_string($con, $_POST['password']);
+
+		$SQL = "SELECT * FROM 'login' 
+				    WHERE username = '$username' and password = '$password'";
+
+	    	$Cresults = mysqli_query($con, $SQL);
+
+	    if(mysqli_num_rows($Cresults) > 0){
+            	echo "Successfully Logged in";
+            	header("Location:load.php");
+        }
+        else
+        {
+            echo "Error", mysqli_error($con);
+        }
+        
+	}
          ?>
 
